@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6bd787cd0da2e9e4ab4bd30794ff0082
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 207815
+  packageName: 'Fish-Net: Networking Evolved'
+  packageVersion: 4.3.5R
+  assetPath: Assets/FishNet/Runtime/Generated/Component/Prediction/PredictedObject.Rigidbodies.cs
+  uploadId: 671042

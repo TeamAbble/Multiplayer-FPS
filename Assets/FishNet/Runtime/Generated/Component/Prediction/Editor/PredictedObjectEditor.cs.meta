@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e0b8595657415764e9d83b6d974043af
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 207815
+  packageName: 'Fish-Net: Networking Evolved'
+  packageVersion: 4.3.5R
+  assetPath: Assets/FishNet/Runtime/Generated/Component/Prediction/Editor/PredictedObjectEditor.cs
+  uploadId: 671042

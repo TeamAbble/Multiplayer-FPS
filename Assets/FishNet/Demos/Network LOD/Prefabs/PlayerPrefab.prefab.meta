@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 300370bdf7819da41937e0beac65b32c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 207815
+  packageName: 'Fish-Net: Networking Evolved'
+  packageVersion: 4.3.5R
+  assetPath: Assets/FishNet/Demos/Network LOD/Prefabs/PlayerPrefab.prefab
+  uploadId: 671042

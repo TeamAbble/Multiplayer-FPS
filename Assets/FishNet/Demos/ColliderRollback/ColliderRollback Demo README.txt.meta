@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 683b83b178f491a479b732df31da7ade
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 207815
+  packageName: 'Fish-Net: Networking Evolved'
+  packageVersion: 4.3.5R
+  assetPath: Assets/FishNet/Demos/ColliderRollback/ColliderRollback Demo README.txt
+  uploadId: 671042
