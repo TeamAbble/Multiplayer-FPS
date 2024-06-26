@@ -43,13 +43,14 @@ public class GameManager : MonoBehaviour
         loadscreenGroup.alpha = 0;
         yield return null;
         float a = 0;
-        yield return new WaitForSeconds(fakeLoadScreenTime);
         while (a < 1)
         {
             a += Time.deltaTime;
             loadscreenGroup.alpha = loadScreenAlphaCurve.Evaluate(a);
             yield return new WaitForEndOfFrame();
         }
+        yield return new WaitForSeconds(fakeLoadScreenTime);
+
         if (useNetworkLoad)
         {
             SceneLoadData sld = new(scene.Name)
@@ -66,8 +67,8 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
             c.allowSceneActivation = true;
-            yield return new WaitForSeconds(fakeLoadScreenTime);
         }
+        yield return new WaitForSeconds(fakeLoadScreenTime);
 
         while (a > 0)
         {
