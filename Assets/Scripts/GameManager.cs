@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] internal bool loadingScene;
     [SerializeField] internal AnimationCurve loadScreenAlphaCurve;
     [SerializeField] internal float fakeLoadScreenTime;
+    [SerializeField] GameModeController gmc;
+    [SerializeField] GameObject gmcPrefab;
+
+    [SerializeField] internal SceneReference menuScene;
     private void Awake()
     {
         if(!Instance)
@@ -24,6 +28,7 @@ public class GameManager : MonoBehaviour
 
 
         DontDestroyOnLoad(gameObject);
+        
     }
 
     public void LoadScene(SceneReference scene)
@@ -56,6 +61,7 @@ public class GameManager : MonoBehaviour
             SceneLoadData sld = new(scene.Name)
             {
                 ReplaceScenes = ReplaceOption.All,
+                
             };
             ConnectionManager.Instance.networkManager.SceneManager.LoadGlobalScenes(sld);
         }
