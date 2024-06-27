@@ -35,8 +35,7 @@ public class GameModeController : NetworkBehaviour
 
     public readonly SyncDictionary<NetworkConnection, int> teamMembers = new(new(WritePermission.ServerOnly));
     public Spawnpoints[] teamSpawnAreas;
-
-    private void Start()
+    private void Awake()
     {
         if (!instance)
         {
@@ -48,6 +47,7 @@ public class GameModeController : NetworkBehaviour
             return;
         }
     }
+
     public override void OnStartServer()
     {
         base.OnStartServer();

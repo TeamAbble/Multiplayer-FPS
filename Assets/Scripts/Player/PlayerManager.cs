@@ -61,6 +61,17 @@ public class PlayerManager : NetworkBehaviour
                 spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
             }
         }
+        else
+        {
+            if (LocalConnection.IsLocalClient)
+            {
+                print("Cannot find Game Mode Controller??");
+            }
+            else
+            {
+                print("This isn't the local client, i think");
+            }
+        }
     }
 
     public override void OnStopClient()
