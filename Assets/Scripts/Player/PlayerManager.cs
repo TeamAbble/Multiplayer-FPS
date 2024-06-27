@@ -31,7 +31,8 @@ public class PlayerManager : NetworkBehaviour
                 disableOnLocal[i].enabled = false;
             }
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
@@ -70,6 +71,8 @@ public class PlayerManager : NetworkBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
             GameManager.Instance.LoadScene(GameManager.Instance.menuScene);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
