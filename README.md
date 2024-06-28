@@ -42,7 +42,7 @@ You load into the main menu, which has three big buttons:
 
 ## Okay, but what happens next?
 More questions? Okay, this one is cool! Maybe _now_ you'll be satisfied<br>
-Once the player has joined a game, currently, all they can do is view the countdown of the Pre-Game Timer, followed by the countdown of the In-Game Timer.<br>
+Once the player has joined a game, they are able to move the spectator camera around. Later today, the physical player will be added provided the Spectator works fine.<br>
 This, however, confirms that the gameplay states are somewhat functional.<br>
 
 ## So what are you planning next? 
