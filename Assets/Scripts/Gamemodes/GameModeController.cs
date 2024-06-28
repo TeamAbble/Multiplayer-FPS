@@ -47,7 +47,19 @@ public class GameModeController : NetworkBehaviour
             return;
         }
     }
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
 
+        var players = FindObjectsByType<BasePlayer>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
+        if(players.Length > 0)
+        {
+            foreach( var player in players)
+            {
+                player.SetColour();
+            }
+        }
+    }
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -93,8 +105,15 @@ public class GameModeController : NetworkBehaviour
     public override void OnStopServer()
     {
         base.OnStopServer();
+        teamMembers.Clear();
+        
     }
-    
+    public override void OnStopClient()
+    {
+        print("This probably means the host has disappeared, or the player has been removed from the game");
+        base.OnStopClient();
+    }
+
 
     IEnumerator PreGameStartTimer()
     {

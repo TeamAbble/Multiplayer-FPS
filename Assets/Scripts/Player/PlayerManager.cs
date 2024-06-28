@@ -1,5 +1,6 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,8 +20,10 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] internal Vector2 moveInput;
     [SerializeField] internal Vector2 lookInput;
 
+    [SerializeField] CinemachineCamera currentCamera;
 
 
+    public readonly SyncVar<bool> isAlive = new(true, new(WritePermission.ServerOnly));
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -33,6 +36,10 @@ public class PlayerManager : NetworkBehaviour
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+            phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+
         }
         else
         {
@@ -112,6 +119,13 @@ public class PlayerManager : NetworkBehaviour
     {
         lookInput = context.ReadValue<Vector2>();
     }
+    public void PauseInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameManager.Instance.SetPause(!GameManager.Instance.paused);
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -124,8 +138,15 @@ public class PlayerManager : NetworkBehaviour
             print("GAME MODE CONTROLLER NOT FOUND!");
             return;
         }
-        if (GameModeController.instance.gameWaitingToStart.Value)
+        if (GameModeController.instance.gameWaitingToStart.Value && !GameManager.Instance.paused)
         {
+
+            if(currentCamera != spec.cam)
+            {
+                currentCamera = spec.cam;
+                currentCamera.Prioritize();
+            }
+
             print("Spectator Player");
             if (spec)
             {
@@ -139,8 +160,15 @@ public class PlayerManager : NetworkBehaviour
             }
 
         }
-        else if (GameModeController.instance.gameInProgress.Value)
+        else if (GameModeController.instance.gameInProgress.Value && !GameManager.Instance.paused)
         {
+
+            if(currentCamera != phys.cam)
+            {
+                currentCamera = phys.cam;
+                currentCamera.Prioritize();
+            }
+
             print("Physical Player");
             if (spec)
             {

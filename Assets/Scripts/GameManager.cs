@@ -2,6 +2,7 @@ using Eflatun.SceneReference;
 using FishNet.Managing;
 using FishNet.Managing.Scened;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gmcPrefab;
 
     [SerializeField] internal SceneReference menuScene;
+    [SerializeField] internal TMP_Text joinCodeText;
+    [SerializeField] internal GameObject joinCodePanel;
+
+
+    [SerializeField] internal bool paused;
+    [SerializeField] internal GameObject pauseMenu;
     private void Awake()
     {
         if(!Instance)
@@ -28,7 +35,42 @@ public class GameManager : MonoBehaviour
 
 
         DontDestroyOnLoad(gameObject);
-        
+        joinCodePanel.SetActive(false);
+        pauseMenu.SetActive(false);
+
+    }
+    private void Start()
+    {
+        ConnectionManager.Instance.networkManager.ClientManager.OnClientConnectionState += ClientManager_OnClientConnectionState;
+    }
+    private void ClientManager_OnClientConnectionState(FishNet.Transporting.ClientConnectionStateArgs obj)
+    {
+        if(obj.ConnectionState == FishNet.Transporting.LocalConnectionState.Stopping)
+        {
+            LoadScene(menuScene);
+            joinCodePanel.SetActive(false);
+
+            SetPause(false);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;            
+        }
+        if(obj.ConnectionState == FishNet.Transporting.LocalConnectionState.Starting)
+        {
+            joinCodePanel.SetActive(true);
+            joinCodeText.text = ConnectionManager.Instance.currentLobbyJoinCode;
+
+            
+        }
+    }
+    public void SetPause(bool paused)
+    {
+        this.paused = paused;
+
+        Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = paused;
+
+        pauseMenu.SetActive(paused);
     }
 
     public void LoadScene(SceneReference scene)
@@ -86,5 +128,11 @@ public class GameManager : MonoBehaviour
         loadscreenGroup.blocksRaycasts = false;
         loadscreenGroup.alpha = 0;
         loadscreenGroup.gameObject.SetActive(false);
+        loadingScene = false;
+        yield break;
+    }
+    public void QuitMPCallback()
+    {
+        ConnectionManager.Instance.QuitMPGame();
     }
 }

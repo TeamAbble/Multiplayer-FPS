@@ -26,7 +26,6 @@ public class ConnectionManager : MonoBehaviour
     public int maxPlayers;
     public string currentRelayJoinCode;
     public string currentLobbyJoinCode;
-
     //TESTING ONLY!
     public List<SceneReference> maps;
     private void Awake()
@@ -108,6 +107,32 @@ public class ConnectionManager : MonoBehaviour
         {
             throw;
         }
+
+
+        int rand = Random.Range(0, maps.Count);
+        string sceneName = maps[rand].Name;
+        try
+        {
+            print("Creating lobby");
+            CreateLobbyOptions clo = new CreateLobbyOptions()
+            {
+                Data = new()
+                {
+
+
+                    {RELAYJOINKEY, new(DataObject.VisibilityOptions.Private, currentRelayJoinCode)},
+                    {MAPNAMEKEY, new(DataObject.VisibilityOptions.Public, sceneName) }
+                }
+            };
+            lobbyName = $"{AuthenticationService.Instance.PlayerId}_Lobby";
+            gameplayLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers);
+        }
+        catch (LobbyServiceException e)
+        {
+            throw e;
+        }
+        currentLobbyJoinCode = gameplayLobby.LobbyCode;
+
         try
         {
             print("joining relay");
@@ -130,31 +155,27 @@ public class ConnectionManager : MonoBehaviour
             throw;
         }
 
-        int rand = Random.Range(0, maps.Count);
-        string sceneName = maps[rand].Name;
         print("loading map: " + sceneName);
         GameManager.Instance.LoadSceneOnNetwork(maps[rand]);
+        return true;
+    }
+
+    public async void QuitMPGame()
+    {
         try
         {
-            print("Creating lobby");
-            CreateLobbyOptions clo = new CreateLobbyOptions()
-            {
-                Data = new()
-                {
-
-
-                    {RELAYJOINKEY, new(DataObject.VisibilityOptions.Private, currentRelayJoinCode)},
-                    {MAPNAMEKEY, new(DataObject.VisibilityOptions.Public, sceneName) }
-                }
-            };
-            lobbyName = $"{AuthenticationService.Instance.PlayerId}_Lobby";
-            gameplayLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers);
+            await Lobbies.Instance.RemovePlayerAsync(gameplayLobby.Id, AuthenticationService.Instance.PlayerId);
         }
-        catch (LobbyServiceException e)
+        catch (System.Exception)
         {
-            throw e;
+
+            throw;
         }
-        currentLobbyJoinCode = gameplayLobby.LobbyCode;
-        return true;
+
+        networkManager.ServerManager.StopConnection(true);
+
+        gameplayLobby = null;
+        hostedAllocation = null;
+        joinedAllocation = null;
     }
 }

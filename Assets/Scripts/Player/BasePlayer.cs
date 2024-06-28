@@ -1,4 +1,5 @@
 using FishNet.Object;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class BasePlayer : NetworkBehaviour
@@ -13,7 +14,22 @@ public class BasePlayer : NetworkBehaviour
     [SerializeField] internal PlayerManager playerManager;
 
     [SerializeField] internal float lookPitch, lookPitchOffset, lookYaw;
-    private void OnLevelWasLoaded(int level)
+    [SerializeField] internal CinemachineCamera cam;
+    private void Awake()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        SetColour();
+    }
+    private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+    {
+        SetColour();
+    }
+    public void SetColour()
     {
         if (GameModeController.instance)
         {
@@ -28,6 +44,10 @@ public class BasePlayer : NetworkBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            print("No Game Mode Controller found!");
         }
     }
     private void FixedUpdate()
@@ -52,6 +72,8 @@ public class BasePlayer : NetworkBehaviour
     }
     protected virtual void Look()
     {
-        
+        lookPitch = Mathf.Clamp(lookPitch - (lookInput.y * lookSpeed.y) * Time.deltaTime, lookPitchClamp.x, lookPitchClamp.y) + lookPitchOffset;
+        lookYaw += lookInput.x * lookSpeed.x * Time.deltaTime;
+        lookYaw %= 360;
     }
 }
