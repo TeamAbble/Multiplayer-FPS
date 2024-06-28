@@ -9,7 +9,7 @@ public class PhysicalPlayer : BasePlayer
     [SerializeField] protected float groundCheckRadius, groundCheckDistance;
     [SerializeField] protected Vector3 groundCheckNormal;
     [SerializeField] protected LayerMask groundMask;
-
+    [SerializeField] bool grounded;
     protected override void Look()
     {
         base.Look();
@@ -32,9 +32,17 @@ public class PhysicalPlayer : BasePlayer
         }
         else
         {
-
-            return;
+            //We've just left the ground
+            if (grounded)
+            {
+                rb.AddForce(transform.rotation * new Vector3(moveInput.x * moveSpeed.x, 0, moveInput.y * moveSpeed.y), ForceMode.Impulse);
+            }
         }
-
+        grounded = hit.collider;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(transform.position - transform.up * groundCheckDistance, groundCheckRadius);
     }
 }

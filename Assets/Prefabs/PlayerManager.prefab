@@ -605,11 +605,12 @@ MonoBehaviour:
   cam: {fileID: 2383514269434830432}
   head: {fileID: 7215787077812352403}
   groundCheckRadius: 0.4
-  groundCheckDistance: 1.3
+  groundCheckDistance: 0.75
   groundCheckNormal: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  grounded: 0
 --- !u!54 &6641521617428096015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -619,7 +620,7 @@ Rigidbody:
   m_GameObject: {fileID: 5411391530691770863}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 3
+  m_Drag: 0.2
   m_AngularDrag: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
