@@ -83,9 +83,11 @@ public class GameModeController : NetworkBehaviour
         {
             redTeamMembers.Add(connection);
             print($"added {connection} to red team");
+            pm.teamNumber.Value = 1;
         }
         else
         {
+            pm.teamNumber.Value = 0;
             blueTeamMembers.Add(connection);
             print($"added {connection} to blue team");
 
@@ -117,6 +119,14 @@ public class GameModeController : NetworkBehaviour
             return redTeamColour;
         else
             return blueTeamColour;
+    }
+    public Color TeamColour(PlayerManager pm)
+    {
+        if (pm.teamNumber.Value == 1)
+            return redTeamColour;
+        else if (pm.teamNumber.Value == 0)
+            return blueTeamColour;
+        else return Color.magenta;
     }
     public override void OnStopServer()
     {
