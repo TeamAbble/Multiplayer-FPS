@@ -1380,6 +1380,7 @@ MonoBehaviour:
   maps:
   - asset: {fileID: 102900000, guid: b7ad942e77c72ed46879fd4dcc3b7c15, type: 3}
     guid: b7ad942e77c72ed46879fd4dcc3b7c15
+  heartbeatTime: 15
 --- !u!4 &740076745
 Transform:
   m_ObjectHideFlags: 0
