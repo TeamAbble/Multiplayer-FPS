@@ -83,30 +83,9 @@ public class PlayerManager : NetworkBehaviour
         {
             if (IsServerInitialized)
             {
-                GameModeController.instance.JoinTeam(Owner);
+                GameModeController.instance.JoinTeam(Owner, this);
 
             }
-
-            if (IsOwner)
-            {
-                print("Getting spawn point!");
-
-                GameModeController.Spawnpoints spawnpoints = GameModeController.instance.GetSpawnPoint(Owner);
-                Transform spawnpoint = spawnpoints.spawnpoints[Random.Range(0, spawnpoints.spawnpoints.Length)];
-                Vector2 randomPoint = Random.insideUnitCircle * spawnpoints.randomSpawnRadius;
-                if (phys)
-                {
-                    phys.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 0, randomPoint.y), spawnpoint.rotation);
-                }
-                if (spec)
-                {
-                    spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
-                }
-            }
-            if (spec)
-                spec.SetColour();
-            if (phys)
-                phys.SetColour();
         }
         else
         {
@@ -120,7 +99,30 @@ public class PlayerManager : NetworkBehaviour
             }
         }
     }
+    [ObserversRpc()]
+    public void InitialisePlayer()
+    {
+        if (IsOwner)
+        {
+            print("Getting spawn point!");
 
+            GameModeController.Spawnpoints spawnpoints = GameModeController.instance.GetSpawnPoint(Owner);
+            Transform spawnpoint = spawnpoints.spawnpoints[Random.Range(0, spawnpoints.spawnpoints.Length)];
+            Vector2 randomPoint = Random.insideUnitCircle * spawnpoints.randomSpawnRadius;
+            if (phys)
+            {
+                phys.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 0, randomPoint.y), spawnpoint.rotation);
+            }
+            if (spec)
+            {
+                spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
+            }
+        }
+        if (spec)
+            spec.SetColour();
+        if (phys)
+            phys.SetColour();
+    }
     public override void OnStopClient()
     {
         base.OnStopClient();

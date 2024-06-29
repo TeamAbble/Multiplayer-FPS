@@ -76,7 +76,7 @@ public class GameModeController : NetworkBehaviour
         gameWaitingToStart.Value = true;
         pregameTimer.StartTimer(startTime);
     }
-    public void JoinTeam(NetworkConnection connection)
+    public void JoinTeam(NetworkConnection connection, PlayerManager pm)
     {
         //Figure out which team to join
         if(blueTeamMembers.Count > redTeamMembers.Count)
@@ -87,6 +87,7 @@ public class GameModeController : NetworkBehaviour
         {
             blueTeamMembers.Add(connection);
         }
+        pm.InitialisePlayer();
     }
     public void LeaveTeam(NetworkConnection connection)
     {
