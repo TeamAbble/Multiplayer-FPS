@@ -113,6 +113,14 @@ public class GameModeController : NetworkBehaviour
         }
         return null;
     }
+    public Spawnpoints GetSpawnPoint(PlayerManager pm)
+    {
+        if (pm.teamNumber.Value == 0)
+            return blueSpawnpoints;
+        if (pm.teamNumber.Value == 1)
+            return redSpawnpoints;
+        return null;
+    }
     public Color TeamColour(NetworkConnection connection)
     {
         if (redTeamMembers.Contains(connection))
