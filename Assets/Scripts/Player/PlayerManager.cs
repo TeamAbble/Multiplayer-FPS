@@ -57,7 +57,15 @@ public class PlayerManager : NetworkBehaviour
             spec.cam.Priority.Value = -99;
             phys.cam.Priority.Value = -99;
         }
+        teamNumber.OnChange += TeamNumber_OnChange;
+    }
 
+    private void TeamNumber_OnChange(int prev, int next, bool asServer)
+    {
+        if (spec)
+            spec.SetColour();
+        if (phys)
+            phys.SetColour();
     }
 
     private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
