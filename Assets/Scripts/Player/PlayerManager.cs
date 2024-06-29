@@ -33,14 +33,15 @@ public class PlayerManager : NetworkBehaviour
             {
                 disableOnLocal[i].enabled = false;
             }
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             if (IsOwner)
             {
-                UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
 
                 spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
                 phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+
             }
         }
         else
@@ -54,21 +55,31 @@ public class PlayerManager : NetworkBehaviour
 
     private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
     {
-        if (GameModeController.instance && LocalConnection.IsLocalClient)
+        if (GameModeController.instance)
         {
-            print("Getting spawn point!");
-            GameModeController.instance.teamMembers.Add(LocalConnection, teamNumber.Value);
+            if (IsServerInitialized)
+            {
+                teamNumber.Value = GameModeController.instance.TeamToJoin();
 
-            Transform spawnpoint = GameModeController.instance.teamSpawnAreas[teamNumber.Value].RandomSpawnPoint();
-            Vector2 randomPoint = Random.insideUnitCircle * GameModeController.instance.teamSpawnAreas[teamNumber.Value].randomSpawnRadius;
-            if (phys)
-            {
-                phys.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 0, randomPoint.y), spawnpoint.rotation);
             }
-            if (spec)
+
+            if (LocalConnection.IsLocalClient)
             {
-                spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
+                print("Getting spawn point!");
+                GameModeController.instance.teamMembers.Add(LocalConnection, teamNumber.Value);
+
+                Transform spawnpoint = GameModeController.instance.teamSpawnAreas[teamNumber.Value].RandomSpawnPoint();
+                Vector2 randomPoint = Random.insideUnitCircle * GameModeController.instance.teamSpawnAreas[teamNumber.Value].randomSpawnRadius;
+                if (phys)
+                {
+                    phys.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 0, randomPoint.y), spawnpoint.rotation);
+                }
+                if (spec)
+                {
+                    spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
+                }
             }
+
         }
         else
         {
@@ -100,7 +111,6 @@ public class PlayerManager : NetworkBehaviour
     {
         print("Starting player manager");
         base.OnStartServer();
-        teamNumber.Value = GameModeController.instance.TeamToJoin();
     }
 
     public override void OnStopServer()
