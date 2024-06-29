@@ -164,7 +164,8 @@ public class ConnectionManager : MonoBehaviour
 
     private async void FixedUpdate()
     {
-        if (!string.IsNullOrWhiteSpace(gameplayLobby.Id) && gameplayLobby.HostId == AuthenticationService.Instance.PlayerId && currentHeartbeatTime >= heartbeatTime)
+        
+        if (gameplayLobby != null && gameplayLobby.HostId == AuthenticationService.Instance.PlayerId && currentHeartbeatTime >= heartbeatTime)
         {
             await Lobbies.Instance.SendHeartbeatPingAsync(gameplayLobby.Id);
             currentHeartbeatTime = 0;
