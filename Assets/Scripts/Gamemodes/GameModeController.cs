@@ -152,7 +152,7 @@ public class GameModeController : NetworkBehaviour
         }
         if (IsServerInitialized)
         {
-            if (gameInProgress.Value && inGameTimer.Remaining <= 0)
+            if (gameInProgress.Value && inGameTimer.Remaining <= 0 && inGameTimer.Elapsed > 0)
             {
                 gameInProgress.Value = false;
             }
