@@ -168,8 +168,8 @@ public class ConnectionManager : MonoBehaviour
         
         if (gameplayLobby != null && gameplayLobby.HostId == AuthenticationService.Instance.PlayerId && currentHeartbeatTime >= heartbeatTime)
         {
-            await Lobbies.Instance.SendHeartbeatPingAsync(gameplayLobby.Id);
             currentHeartbeatTime = 0;
+            await Lobbies.Instance.SendHeartbeatPingAsync(gameplayLobby.Id);
         }
         currentHeartbeatTime += Time.fixedDeltaTime;
     }

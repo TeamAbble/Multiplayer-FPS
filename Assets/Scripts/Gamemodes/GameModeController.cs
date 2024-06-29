@@ -155,7 +155,7 @@ public class GameModeController : NetworkBehaviour
             {
                 gameInProgress.Value = false;
             }
-            if (pregameTimer.Remaining <= 0)
+            if (pregameTimer.Remaining <= 0 && pregameTimer.Elapsed != 0)
             {
                 StartGame();
             }
