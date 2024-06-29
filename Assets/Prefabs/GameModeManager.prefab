@@ -57,6 +57,14 @@ MonoBehaviour:
   - {r: 0, g: 0.6102464, b: 1, a: 1}
   - {r: 1, g: 0.18928528, b: 0.1462264, a: 1}
   teamSpawnAreas: []
+  redSpawnpoints:
+    spawnpoints: []
+    randomSpawnRadius: 0
+  blueSpawnpoints:
+    spawnpoints: []
+    randomSpawnRadius: 0
+  redTeamColour: {r: 1, g: 0.18823531, b: 0.14509805, a: 1}
+  blueTeamColour: {r: 0, g: 0.6117647, b: 1, a: 1}
 --- !u!114 &356119939851743622
 MonoBehaviour:
   m_ObjectHideFlags: 0

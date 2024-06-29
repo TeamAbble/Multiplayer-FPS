@@ -61,6 +61,9 @@ public class PlayerManager : NetworkBehaviour
 
             spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
             phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
@@ -80,17 +83,17 @@ public class PlayerManager : NetworkBehaviour
         {
             if (IsServerInitialized)
             {
-                teamNumber.Value = GameModeController.instance.TeamToJoin();
+                GameModeController.instance.JoinTeam(Owner);
 
             }
 
             if (IsOwner)
             {
                 print("Getting spawn point!");
-                GameModeController.instance.teamMembers.Add(LocalConnection, teamNumber.Value);
 
-                Transform spawnpoint = GameModeController.instance.teamSpawnAreas[teamNumber.Value].RandomSpawnPoint();
-                Vector2 randomPoint = Random.insideUnitCircle * GameModeController.instance.teamSpawnAreas[teamNumber.Value].randomSpawnRadius;
+                GameModeController.Spawnpoints spawnpoints = GameModeController.instance.GetSpawnPoint(Owner);
+                Transform spawnpoint = spawnpoints.spawnpoints[Random.Range(0, spawnpoints.spawnpoints.Length)];
+                Vector2 randomPoint = Random.insideUnitCircle * spawnpoints.randomSpawnRadius;
                 if (phys)
                 {
                     phys.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 0, randomPoint.y), spawnpoint.rotation);
@@ -143,7 +146,7 @@ public class PlayerManager : NetworkBehaviour
         base.OnStopServer();
         if (GameModeController.instance)
         {
-            GameModeController.instance.teamMembers.Remove(Owner);
+            
         }
     }
 

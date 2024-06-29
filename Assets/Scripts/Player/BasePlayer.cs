@@ -40,8 +40,7 @@ public class BasePlayer : NetworkBehaviour
                 {
                     for (int i = 0; i < item.materials.Length; i++)
                     {
-                        int team = GameModeController.instance.teamMembers[Owner];
-                        item.materials[i].SetColor("_BaseColor", GameModeController.instance.teamColours[team]);
+                        item.materials[i].color = GameModeController.instance.TeamColour(Owner);
                     }
                 }
             }

@@ -11351,7 +11351,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1107253979}
+  m_Mesh: {fileID: 965597251}
 --- !u!33 &1387614486
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -12426,7 +12426,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 356119939851743622, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 2818555898
+      value: 2013265404
       objectReference: {fileID: 0}
     - target: {fileID: 2563816990034267780, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12470,8 +12470,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
       propertyPath: teamSpawnAreas.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: redSpawnpoints.randomSpawnRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: blueSpawnpoints.randomSpawnRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: redSpawnpoints.spawnpoints.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: blueSpawnpoints.spawnpoints.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'redSpawnpoints.spawnpoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 958595785}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'redSpawnpoints.spawnpoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 115676451}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'redSpawnpoints.spawnpoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1404475171}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'redSpawnpoints.spawnpoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1249082717}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'redSpawnpoints.spawnpoints.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1060454105}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'redSpawnpoints.spawnpoints.Array.data[5]'
+      value: 
+      objectReference: {fileID: 182311935}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'blueSpawnpoints.spawnpoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 343001175}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'blueSpawnpoints.spawnpoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 953639209}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'blueSpawnpoints.spawnpoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2059372043}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'blueSpawnpoints.spawnpoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1477818153}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'blueSpawnpoints.spawnpoints.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1670854268}
+    - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
+      propertyPath: 'blueSpawnpoints.spawnpoints.Array.data[5]'
+      value: 
+      objectReference: {fileID: 930911145}
     - target: {fileID: 3858676780754664438, guid: f9ac74ea2e45ea24fa82adde520857f0, type: 3}
       propertyPath: teamSpawnAreas.Array.data[0].randomSpawnRadius
       value: 0.5

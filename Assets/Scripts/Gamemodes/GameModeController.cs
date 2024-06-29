@@ -7,6 +7,7 @@ using Unity.Collections;
 using Unity.Services.Relay;
 using FishNet.Connection;
 using System.Linq;
+using Unity.VisualScripting;
 public class GameModeController : NetworkBehaviour
 {
     public static GameModeController instance;
@@ -20,7 +21,11 @@ public class GameModeController : NetworkBehaviour
         }
         public float randomSpawnRadius;
     }
-    public readonly SyncVar<int> numberOfTeams = new(new(WritePermission.ServerOnly));
+    public struct TeamPlayer
+    {
+        public NetworkConnection conn;
+        public int teamNumber;
+    }
 
     public string[] teamNames;
     public float gameTimeMax;
@@ -34,8 +39,12 @@ public class GameModeController : NetworkBehaviour
 
     public Color[] teamColours;
 
-    public readonly SyncDictionary<NetworkConnection, int> teamMembers = new(new(WritePermission.ServerOnly));
     public Spawnpoints[] teamSpawnAreas;
+
+    public readonly SyncList<NetworkConnection> blueTeamMembers = new(new(WritePermission.ServerOnly)), redTeamMembers = new(new(WritePermission.ServerOnly));
+    public Spawnpoints redSpawnpoints, blueSpawnpoints;
+    public Color redTeamColour, blueTeamColour;
+
     private void Awake()
     {
         if (!instance)
@@ -67,36 +76,47 @@ public class GameModeController : NetworkBehaviour
         gameWaitingToStart.Value = true;
         pregameTimer.StartTimer(startTime);
     }
-    public int TeamToJoin()
+    public void JoinTeam(NetworkConnection connection)
     {
-        int teamToJoin = -1;
-        //We need to figure out how many teams there are, which is indicated by how many team names there are.
-        //I know its stupid, but it works for now.
-        //I don't think I need to write anything for that bit
-
-        if(teamMembers.Count > 0)
+        //Figure out which team to join
+        if(blueTeamMembers.Count > redTeamMembers.Count)
         {
-            //We now need to figure out how many players are on each team.
-            int[] playersOnEachTeam = new int[teamNames.Length];
-            foreach (var item in teamMembers)
-            {
-                playersOnEachTeam[item.Value]++;
-            }
-            teamToJoin = playersOnEachTeam.Min();
+            redTeamMembers.Add(connection);
         }
         else
         {
-            //We have no existing teams, so we'll just join team 0.
-            teamToJoin = 0;
+            blueTeamMembers.Add(connection);
         }
-
-        return teamToJoin;
     }
-
+    public void LeaveTeam(NetworkConnection connection)
+    {
+        if (redTeamMembers.Contains(connection))
+            redTeamMembers.Remove(connection);
+        else if(blueTeamMembers.Contains(connection))
+            blueTeamMembers.Remove(connection);
+    }
+    public Spawnpoints GetSpawnPoint(NetworkConnection connection)
+    {
+        if (redTeamMembers.Contains(connection))
+        {
+            return redSpawnpoints;
+        }
+        if (blueTeamMembers.Contains(connection))
+        {
+            return blueSpawnpoints;
+        }
+        return null;
+    }
+    public Color TeamColour(NetworkConnection connection)
+    {
+        if (redTeamMembers.Contains(connection))
+            return redTeamColour;
+        else
+            return blueTeamColour;
+    }
     public override void OnStopServer()
     {
         base.OnStopServer();
-        teamMembers.Clear();
         
     }
     public override void OnStopClient()
