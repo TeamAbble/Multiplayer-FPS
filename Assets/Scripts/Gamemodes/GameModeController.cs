@@ -63,7 +63,7 @@ public class GameModeController : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        StartCoroutine(PreGameStartTimer());
+        gameWaitingToStart.Value = true;
     }
     public int TeamToJoin()
     {
@@ -144,7 +144,9 @@ public class GameModeController : NetworkBehaviour
             }
             else if (gameWaitingToStart.Value)
             {
+                pregameTimer.Update(Time.fixedDeltaTime);
                 GameUIController.Instance.timerText.text = $"{(pregameTimer.Remaining / 60) % 60:00}:{pregameTimer.Remaining % 60:00}";
+
             }
         }
         if (IsServerInitialized)
@@ -152,6 +154,10 @@ public class GameModeController : NetworkBehaviour
             if (gameInProgress.Value && inGameTimer.Remaining <= 0)
             {
                 gameInProgress.Value = false;
+            }
+            if (pregameTimer.Remaining <= 0)
+            {
+                StartGame();
             }
         }
     }

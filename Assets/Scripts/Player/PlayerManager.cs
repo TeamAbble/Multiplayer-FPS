@@ -16,7 +16,7 @@ public class PlayerManager : NetworkBehaviour
     public Behaviour[] disableOnLocal;
 
     public readonly SyncVar<int> teamNumber = new(new(WritePermission.ServerOnly));
-
+    public int TeamNumber;
     [SerializeField] internal Vector2 moveInput;
     [SerializeField] internal Vector2 lookInput;
 
@@ -33,19 +33,21 @@ public class PlayerManager : NetworkBehaviour
             {
                 disableOnLocal[i].enabled = false;
             }
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            if (IsOwner)
+            {
+                UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
 
-            spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
-            phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
-
+                spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+                phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+            }
         }
         else
         {
-            for (int i = 0; i < disableOnLocal.Length; i++)
+            for (int i = 0; i < disableOnRemote.Length; i++)
             {
-                disableOnLocal[i].enabled = false;
+                disableOnRemote[i].enabled = false;
             }
         }
     }
@@ -55,7 +57,7 @@ public class PlayerManager : NetworkBehaviour
         if (GameModeController.instance && LocalConnection.IsLocalClient)
         {
             print("Getting spawn point!");
-            GameModeController.instance.teamMembers.Add(LocalConnection, GameModeController.instance.TeamToJoin());
+            GameModeController.instance.teamMembers.Add(LocalConnection, teamNumber.Value);
 
             Transform spawnpoint = GameModeController.instance.teamSpawnAreas[teamNumber.Value].RandomSpawnPoint();
             Vector2 randomPoint = Random.insideUnitCircle * GameModeController.instance.teamSpawnAreas[teamNumber.Value].randomSpawnRadius;
@@ -98,6 +100,7 @@ public class PlayerManager : NetworkBehaviour
     {
         print("Starting player manager");
         base.OnStartServer();
+        teamNumber.Value = GameModeController.instance.TeamToJoin();
     }
 
     public override void OnStopServer()
@@ -129,6 +132,8 @@ public class PlayerManager : NetworkBehaviour
 
     private void FixedUpdate()
     {
+        TeamNumber = teamNumber.Value;
+
         if (!LocalConnection.IsLocalClient)
         {
             return;
