@@ -91,24 +91,29 @@ public class LobbyMenu : MonoBehaviour
 
     public async void JoinRandomLobby()
     {
-        if(lobbyButtons.Count > 0)
-        { 
-            int randomLobby = Random.Range(0, lobbyButtons.Count);
+
             joiningScreen.SetActive(true);
+            QueryResponse lobbies;
             try
             {
-                await ConnectionManager.Instance.JoinGameLobbyViaCode(lobbyButtons[randomLobby].targetLobby.LobbyCode);
+                lobbies = await Lobbies.Instance.QueryLobbiesAsync();
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+            int randomLobby = Random.Range(0, lobbies.Results.Count);
+
+            try
+            {
+                await ConnectionManager.Instance.JoinGameLobbyViaCode(lobbies.Results[randomLobby].LobbyCode);
             }
             catch (System.Exception)
             {
                 joiningScreen.SetActive(false);
                 throw;
             }
-        }
-        else
-        {
-            print("Insufficient lobbies to join a game!");
-        }
     }
     public async void CreateLobby()
     {

@@ -28,6 +28,8 @@ public class ConnectionManager : MonoBehaviour
     public string currentLobbyJoinCode;
     //TESTING ONLY!
     public List<SceneReference> maps;
+    public float heartbeatTime;
+    float currentHeartbeatTime;
     private void Awake()
     {
         //Enforce singleton, remove any duplicates.
@@ -158,6 +160,16 @@ public class ConnectionManager : MonoBehaviour
         print("loading map: " + sceneName);
         GameManager.Instance.LoadSceneOnNetwork(maps[rand]);
         return true;
+    }
+
+    private async void FixedUpdate()
+    {
+        if (!string.IsNullOrWhiteSpace(gameplayLobby.Id) && gameplayLobby.HostId == AuthenticationService.Instance.PlayerId && currentHeartbeatTime >= heartbeatTime)
+        {
+            await Lobbies.Instance.SendHeartbeatPingAsync(gameplayLobby.Id);
+            currentHeartbeatTime = 0;
+        }
+        currentHeartbeatTime += Time.fixedDeltaTime;
     }
 
     public async void QuitMPGame()
