@@ -128,11 +128,12 @@ public class GameModeController : NetworkBehaviour
         StartGame();
         yield break;
     }
+    [ServerRpc]
     public void StartGame()
     {
-        gameInProgress.Value = true;
         gameWaitingToStart.Value = false;
         inGameTimer.StartTimer(gameTimeMax);
+        gameInProgress.Value = true;
     }
     private void FixedUpdate()
     {
@@ -152,7 +153,7 @@ public class GameModeController : NetworkBehaviour
         }
         if (IsServerInitialized)
         {
-            if (gameInProgress.Value && inGameTimer.Remaining <= 0 && inGameTimer.Elapsed > 0)
+            if (gameInProgress.Value && inGameTimer.Remaining < 0 && inGameTimer.Elapsed > 0)
             {
                 gameInProgress.Value = false;
             }
