@@ -29,7 +29,7 @@ public class GameModeController : NetworkBehaviour
     public readonly SyncVar<bool> gameInProgress = new(new(WritePermission.ServerOnly));
     public readonly SyncVar<bool> gameWaitingToStart = new(new(WritePermission.ServerOnly));
     public readonly SyncTimer pregameTimer = new(new(WritePermission.ServerOnly, ReadPermission.Observers));
-    public float startTimer;
+    public float startTime;
 
     public Color[] teamColours;
 
@@ -64,6 +64,7 @@ public class GameModeController : NetworkBehaviour
     {
         base.OnStartServer();
         gameWaitingToStart.Value = true;
+        pregameTimer.StartTimer(startTime);
     }
     public int TeamToJoin()
     {
@@ -118,7 +119,7 @@ public class GameModeController : NetworkBehaviour
     IEnumerator PreGameStartTimer()
     {
         gameWaitingToStart.Value = true;
-        pregameTimer.StartTimer(startTimer);
+        pregameTimer.StartTimer(startTime);
         while (pregameTimer.Remaining > 0)
         {
             yield return new WaitForSeconds(1);

@@ -52,10 +52,11 @@ MonoBehaviour:
   - The Blooz
   - The Redds
   gameTimeMax: 300
-  startTimer: 30
+  startTime: 30
   teamColours:
   - {r: 0, g: 0.6102464, b: 1, a: 1}
   - {r: 1, g: 0.18928528, b: 0.1462264, a: 1}
+  teamSpawnAreas: []
 --- !u!114 &356119939851743622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 0
+  <PrefabId>k__BackingField: 5
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 9698273968319974335
