@@ -49,6 +49,7 @@ public class LobbyMenu : MonoBehaviour
                     var lb = Instantiate(lobbyButtonPrefab, buttonRoot).GetComponent<LobbyButton>();
                     lb.AssignButton(lobby);
                     lb.button.onClick.AddListener(() => SelectLobby(lb));
+                    lobbyButtons.Add(lb);
                 }
             }
             currentLobbyButton = null;
