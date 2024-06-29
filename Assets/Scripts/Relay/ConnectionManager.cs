@@ -62,6 +62,7 @@ public class ConnectionManager : MonoBehaviour
         try
         {
             string relayJoinCode = gameplayLobby.Data[RELAYJOINKEY].Value;
+            print($"RELAY JOIN CODE: {relayJoinCode}");
             joinedAllocation = await Relay.Instance.JoinAllocationAsync(relayJoinCode);
         }
         catch (System.Exception)
