@@ -179,6 +179,10 @@ public class ConnectionManager : MonoBehaviour
         try
         {
             await Lobbies.Instance.RemovePlayerAsync(gameplayLobby.Id, AuthenticationService.Instance.PlayerId);
+
+            gameplayLobby = null;
+            hostedAllocation = null;
+            joinedAllocation = null;
         }
         catch (System.Exception)
         {
@@ -187,9 +191,5 @@ public class ConnectionManager : MonoBehaviour
         }
 
         networkManager.ServerManager.StopConnection(true);
-
-        gameplayLobby = null;
-        hostedAllocation = null;
-        joinedAllocation = null;
     }
 }

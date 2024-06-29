@@ -143,7 +143,7 @@ public class PlayerManager : NetworkBehaviour
         base.OnStopServer();
         if (GameModeController.instance)
         {
-            GameModeController.instance.teamMembers.Remove(LocalConnection);
+            GameModeController.instance.teamMembers.Remove(Owner);
         }
     }
 
