@@ -111,7 +111,7 @@ public class ConnectionManager : MonoBehaviour
         {
             throw;
         }
-
+        print($"Join Code: {currentRelayJoinCode}");
 
         int rand = Random.Range(0, maps.Count);
         string sceneName = maps[rand].Name;
