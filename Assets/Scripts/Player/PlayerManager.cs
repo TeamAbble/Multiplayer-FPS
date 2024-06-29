@@ -27,22 +27,40 @@ public class PlayerManager : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        if (LocalConnection.IsLocalClient)
+        //if (LocalConnection.IsLocalClient)
+        //{
+        //for (int i = 0; i < disableOnLocal.Length; i++)
+        //{
+        //disableOnLocal[i].enabled = false;
+        //}
+        //UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        //if (IsOwner)
+        //{
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+
+        //spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+        //phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+
+        //}
+        //}
+        //else
+        //{
+        //for (int i = 0; i < disableOnRemote.Length; i++)
+        //{
+        //disableOnRemote[i].enabled = false;
+        //}
+        //}
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        if (IsOwner)
         {
             for (int i = 0; i < disableOnLocal.Length; i++)
             {
                 disableOnLocal[i].enabled = false;
             }
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-            if (IsOwner)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
 
-                spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
-                phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
-
-            }
+            spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+            phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
         }
         else
         {
@@ -50,7 +68,10 @@ public class PlayerManager : NetworkBehaviour
             {
                 disableOnRemote[i].enabled = false;
             }
+            spec.cam.Priority.Value = -99;
+            phys.cam.Priority.Value = -99;
         }
+
     }
 
     private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
@@ -63,7 +84,7 @@ public class PlayerManager : NetworkBehaviour
 
             }
 
-            if (LocalConnection.IsLocalClient)
+            if (IsOwner)
             {
                 print("Getting spawn point!");
                 GameModeController.instance.teamMembers.Add(LocalConnection, teamNumber.Value);
@@ -79,11 +100,14 @@ public class PlayerManager : NetworkBehaviour
                     spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
                 }
             }
-
+            if (spec)
+                spec.SetColour();
+            if (phys)
+                phys.SetColour();
         }
         else
         {
-            if (LocalConnection.IsLocalClient)
+            if (IsOwner)
             {
                 print("Cannot find Game Mode Controller??");
             }
@@ -98,7 +122,7 @@ public class PlayerManager : NetworkBehaviour
     {
         base.OnStopClient();
 
-        if (LocalConnection.IsLocalClient)
+        if (IsOwner)
         {
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
             GameManager.Instance.LoadScene(GameManager.Instance.menuScene);

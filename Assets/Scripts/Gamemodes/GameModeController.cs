@@ -6,6 +6,7 @@ using FishNet.Object.Synchronizing;
 using Unity.Collections;
 using Unity.Services.Relay;
 using FishNet.Connection;
+using System.Linq;
 public class GameModeController : NetworkBehaviour
 {
     public static GameModeController instance;
@@ -81,18 +82,7 @@ public class GameModeController : NetworkBehaviour
             {
                 playersOnEachTeam[item.Value]++;
             }
-
-            //Now we need to figure out which has the least players.
-            int smallestTeamNumber = 100;
-            int smallestTeamIndex = -1;
-            for (int i = 0; i < playersOnEachTeam.Length; i++)
-            {
-                if (playersOnEachTeam[i] < smallestTeamNumber)
-                {
-                    smallestTeamIndex = i;
-                }
-            }
-            teamToJoin = smallestTeamIndex;
+            teamToJoin = playersOnEachTeam.Min();
         }
         else
         {
@@ -128,7 +118,6 @@ public class GameModeController : NetworkBehaviour
         StartGame();
         yield break;
     }
-    [ServerRpc]
     public void StartGame()
     {
         gameWaitingToStart.Value = false;

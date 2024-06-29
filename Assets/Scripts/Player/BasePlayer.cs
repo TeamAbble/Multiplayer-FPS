@@ -27,7 +27,6 @@ public class BasePlayer : NetworkBehaviour
     }
     private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
     {
-        SetColour();
     }
     public void SetColour()
     {
@@ -40,7 +39,8 @@ public class BasePlayer : NetworkBehaviour
                 {
                     for (int i = 0; i < item.materials.Length; i++)
                     {
-                        item.materials[i].SetColor("_BaseColor", GameModeController.instance.teamColours[playerManager.teamNumber.Value]);
+                        int team = GameModeController.instance.teamMembers[Owner];
+                        item.materials[i].SetColor("_BaseColor", GameModeController.instance.teamColours[team]);
                     }
                 }
             }
