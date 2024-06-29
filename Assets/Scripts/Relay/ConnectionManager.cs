@@ -113,6 +113,7 @@ public class ConnectionManager : MonoBehaviour
 
         int rand = Random.Range(0, maps.Count);
         string sceneName = maps[rand].Name;
+        print($"playing on map: {sceneName}");
         try
         {
             print("Creating lobby");
@@ -120,14 +121,12 @@ public class ConnectionManager : MonoBehaviour
             {
                 Data = new()
                 {
-
-
                     {RELAYJOINKEY, new(DataObject.VisibilityOptions.Private, currentRelayJoinCode)},
                     {MAPNAMEKEY, new(DataObject.VisibilityOptions.Public, sceneName) }
                 }
             };
             lobbyName = $"{AuthenticationService.Instance.PlayerId}_Lobby";
-            gameplayLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers);
+            gameplayLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, clo);
         }
         catch (LobbyServiceException e)
         {
