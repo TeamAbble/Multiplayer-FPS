@@ -44,7 +44,7 @@ public class ConnectionManager : MonoBehaviour
             return;
         }
     }
-    public async Task<bool> JoinGameLobbyViaCode(string lobbyJoinCode)
+    public async Task<bool> JoinGameLobbyByID(string lobbyID)
     {
         if (!AuthenticationService.Instance.IsAuthorized)
         {
@@ -53,7 +53,7 @@ public class ConnectionManager : MonoBehaviour
         }
         try
         {
-            gameplayLobby = await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyJoinCode);
+            gameplayLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobbyID);
         }
         catch (System.Exception)
         {

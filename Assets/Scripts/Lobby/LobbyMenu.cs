@@ -81,7 +81,7 @@ public class LobbyMenu : MonoBehaviour
         try
         {
             joiningScreen.SetActive(true);
-            await ConnectionManager.Instance.JoinGameLobbyViaCode(currentLobbyButton.targetLobby.LobbyCode);
+            await ConnectionManager.Instance.JoinGameLobbyByID(currentLobbyButton.targetLobby.LobbyCode);
         }
         catch (System.Exception)
         {
@@ -108,7 +108,7 @@ public class LobbyMenu : MonoBehaviour
 
             try
             {
-                await ConnectionManager.Instance.JoinGameLobbyViaCode(lobbies.Results[randomLobby].LobbyCode);
+                await ConnectionManager.Instance.JoinGameLobbyByID(lobbies.Results[randomLobby].Id);
             }
             catch (System.Exception)
             {

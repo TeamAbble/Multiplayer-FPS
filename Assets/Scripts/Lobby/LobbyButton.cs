@@ -12,7 +12,7 @@ public class LobbyButton : MonoBehaviour
     public void AssignButton(Lobby targetLobby)
     {
         this.targetLobby = targetLobby;
-        joinCode = targetLobby.LobbyCode;
+        joinCode = targetLobby.Id;
         UpdateText();
     }
     public void UpdateText()
