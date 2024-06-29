@@ -168,7 +168,7 @@ public class PlayerManager : NetworkBehaviour
     {
         TeamNumber = teamNumber.Value;
 
-        if (!LocalConnection.IsLocalClient)
+        if (!IsOwner)
         {
             return;
         }
