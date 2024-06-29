@@ -184,10 +184,9 @@ public class ConnectionManager : MonoBehaviour
             hostedAllocation = null;
             joinedAllocation = null;
         }
-        catch (System.Exception)
+        catch (LobbyServiceException e)
         {
-
-            throw;
+            throw e;
         }
 
         networkManager.ServerManager.StopConnection(true);

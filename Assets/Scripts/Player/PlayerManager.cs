@@ -32,7 +32,6 @@ public class PlayerManager : NetworkBehaviour
             if (IsServerInitialized)
             {
                 GameModeController.instance.JoinTeam(Owner, this);
-
             }
         }
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
@@ -68,7 +67,6 @@ public class PlayerManager : NetworkBehaviour
             if (IsServerInitialized)
             {
                 GameModeController.instance.JoinTeam(Owner, this);
-
             }
         }
         else
@@ -91,15 +89,22 @@ public class PlayerManager : NetworkBehaviour
             print("Getting spawn point!");
 
             GameModeController.Spawnpoints spawnpoints = GameModeController.instance.GetSpawnPoint(Owner);
-            Transform spawnpoint = spawnpoints.spawnpoints[Random.Range(0, spawnpoints.spawnpoints.Length)];
-            Vector2 randomPoint = Random.insideUnitCircle * spawnpoints.randomSpawnRadius;
-            if (phys)
+            if(spawnpoints != null)
             {
-                phys.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 0, randomPoint.y), spawnpoint.rotation);
+                Transform spawnpoint = spawnpoints.spawnpoints[Random.Range(0, spawnpoints.spawnpoints.Length)];
+                Vector2 randomPoint = Random.insideUnitCircle * spawnpoints.randomSpawnRadius;
+                if (phys)
+                {
+                    phys.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 0, randomPoint.y), spawnpoint.rotation);
+                }
+                if (spec)
+                {
+                    spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
+                }
             }
-            if (spec)
+            else
             {
-                spec.transform.SetPositionAndRotation(spawnpoint.position + new Vector3(randomPoint.x, 3, randomPoint.y), spawnpoint.rotation);
+                Debug.LogWarning("The spawnpoint was null!");
             }
         }
         if (spec)
