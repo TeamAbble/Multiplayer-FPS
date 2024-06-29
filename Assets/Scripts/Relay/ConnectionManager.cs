@@ -123,7 +123,7 @@ public class ConnectionManager : MonoBehaviour
             {
                 Data = new()
                 {
-                    {RELAYJOINKEY, new(DataObject.VisibilityOptions.Private, currentRelayJoinCode)},
+                    {RELAYJOINKEY, new(DataObject.VisibilityOptions.Member, currentRelayJoinCode)},
                     {MAPNAMEKEY, new(DataObject.VisibilityOptions.Public, sceneName) }
                 }
             };
