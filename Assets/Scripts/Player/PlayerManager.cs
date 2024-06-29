@@ -62,10 +62,7 @@ public class PlayerManager : NetworkBehaviour
 
     private void TeamNumber_OnChange(int prev, int next, bool asServer)
     {
-        if (spec)
-            spec.SetColour();
-        if (phys)
-            phys.SetColour();
+        InitialisePlayer();
     }
 
     private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
