@@ -23,8 +23,6 @@ public class BasePlayer : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        if(GameModeController.instance)
-            SetColour();
     }
     private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
     {

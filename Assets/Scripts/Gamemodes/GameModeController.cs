@@ -82,10 +82,13 @@ public class GameModeController : NetworkBehaviour
         if(blueTeamMembers.Count > redTeamMembers.Count)
         {
             redTeamMembers.Add(connection);
+            print($"added {connection} to red team");
         }
         else
         {
             blueTeamMembers.Add(connection);
+            print($"added {connection} to blue team");
+
         }
         pm.InitialisePlayer();
     }

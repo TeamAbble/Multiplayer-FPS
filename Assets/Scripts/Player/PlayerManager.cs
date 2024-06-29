@@ -27,31 +27,15 @@ public class PlayerManager : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        //if (LocalConnection.IsLocalClient)
-        //{
-        //for (int i = 0; i < disableOnLocal.Length; i++)
-        //{
-        //disableOnLocal[i].enabled = false;
-        //}
-        //UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        //if (IsOwner)
-        //{
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        if (GameModeController.instance)
+        {
+            if (IsServerInitialized)
+            {
+                GameModeController.instance.JoinTeam(Owner, this);
 
-        //spec.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
-        //phys.cam.gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
-
-        //}
-        //}
-        //else
-        //{
-        //for (int i = 0; i < disableOnRemote.Length; i++)
-        //{
-        //disableOnRemote[i].enabled = false;
-        //}
-        //}
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+            }
+        }
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         if (IsOwner)
         {
             for (int i = 0; i < disableOnLocal.Length; i++)
