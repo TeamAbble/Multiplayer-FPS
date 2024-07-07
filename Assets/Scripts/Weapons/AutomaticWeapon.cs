@@ -61,7 +61,7 @@ public class AutomaticWeapon: BaseWeapon
     }
     void CreateTracer(Vector3 start, Vector3 end)
     {
-        GameObject t = Instantiate(bulletTracer, tracerOrigin.position, Quaternion.identity);
+        GameObject t = Instantiate(bulletTracer, start, Quaternion.identity);
         tracers.Add(new()
         {
             start = start,
