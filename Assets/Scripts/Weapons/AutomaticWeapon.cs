@@ -151,6 +151,7 @@ public class AutomaticWeapon: BaseWeapon
     [ServerRpc(RunLocally = true)]
     protected override void ServerAttack()
     {
+        ClientAttack();
         canFire = false;
 
         print("Fired automatic weapon on server");
@@ -180,7 +181,7 @@ public class AutomaticWeapon: BaseWeapon
         }
 
     }
-    [ObserversRpc()]
+    [ObserversRpc(ExcludeOwner = true)]
     protected override void ClientAttack()
     {
         print("Fired automatic weapon on this client");
@@ -197,6 +198,10 @@ public class AutomaticWeapon: BaseWeapon
             CreateTracer(tracerOrigin.position, endPoint);
             if (!gunshotEmitter.EventReference.IsNull)
                 gunshotEmitter.Play();
+            if (hit.collider)
+            {
+                HitFeedback(hit);
+            }
         }
 
     }
@@ -206,7 +211,27 @@ public class AutomaticWeapon: BaseWeapon
             return;
 
         ServerAttack();
-        ClientAttack();
+
+        //temp fix for server issues
+        print("Fired automatic weapon on this client");
+        if (projectile)
+        {
+
+        }
+        else
+        {
+            if (RaycastAttack(out RaycastHit hit, out Vector3 endPoint))
+            {
+
+            }
+            CreateTracer(tracerOrigin.position, endPoint);
+            if (!gunshotEmitter.EventReference.IsNull)
+                gunshotEmitter.Play();
+            if (hit.collider)
+            {
+                HitFeedback(hit);
+            }
+        }
     }
     protected override void HitFeedback(RaycastHit hit)
     {
@@ -224,10 +249,7 @@ public class AutomaticWeapon: BaseWeapon
         }
         he.transform.up = hit.normal;
         Destroy(he, 10);
-        if (hit.collider)
-        {
-            HitFeedback(hit);
-        }
+
     }
     void ResetFire()
     {
