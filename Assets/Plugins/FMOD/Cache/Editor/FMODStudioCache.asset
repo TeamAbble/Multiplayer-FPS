@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8368197016139132878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GunHit
+  m_EditorClassIdentifier: 
+  Path: event:/GunHit
+  Guid:
+    Data1: 2021633191
+    Data2: 1112728179
+    Data3: -180755064
+    Data4: 1983342791
+  Banks:
+  - {fileID: 7447419936264676858}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,14 +43,16 @@ MonoBehaviour:
   - {fileID: 1755629405729579185}
   - {fileID: 6335135042988539164}
   - {fileID: 5128844441763798542}
+  - {fileID: 7447419936264676858}
   EditorEvents:
   - {fileID: 9025407954598399879}
+  - {fileID: -8368197016139132878}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5128844441763798542}
   StringsBanks:
   - {fileID: 1755629405729579185}
-  cacheTime: 638559054019527510
+  cacheTime: 638559631671159928
   cacheVersion: 131618
 --- !u!114 &1755629405729579185
 MonoBehaviour:
@@ -40,10 +69,10 @@ MonoBehaviour:
   Path: MPFPS/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638559054018427441
+  lastModified: 638559542432625234
   FileSizes:
   - Name: Desktop
-    Value: 810
+    Value: 900
   Exists: 1
 --- !u!114 &5128844441763798542
 MonoBehaviour:
@@ -60,7 +89,7 @@ MonoBehaviour:
   Path: MPFPS/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638559054018407366
+  lastModified: 638559542432615235
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -80,10 +109,30 @@ MonoBehaviour:
   Path: MPFPS/Build/Desktop/Footsteps.bank
   Name: Footsteps
   StudioPath: bank:/Footsteps
-  lastModified: 638559054019527510
+  lastModified: 638559631670925161
   FileSizes:
   - Name: Desktop
-    Value: 34816
+    Value: 35296
+  Exists: 1
+--- !u!114 &7447419936264676858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/HitFeedback.bank
+  m_EditorClassIdentifier: 
+  Path: MPFPS/Build/Desktop/HitFeedback.bank
+  Name: HitFeedback
+  StudioPath: bank:/HitFeedback
+  lastModified: 638559631671159928
+  FileSizes:
+  - Name: Desktop
+    Value: 52032
   Exists: 1
 --- !u!114 &9025407954598399879
 MonoBehaviour:
@@ -106,7 +155,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6335135042988539164}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1

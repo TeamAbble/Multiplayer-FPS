@@ -184,11 +184,11 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     BuildDirectory:
-      Value: 
-      HasValue: 0
+      Value: Desktop
+      HasValue: 1
     SpeakerMode:
-      Value: 0
-      HasValue: 0
+      Value: 6
+      HasValue: 1
     VirtualChannelCount:
       Value: 0
       HasValue: 0
@@ -202,10 +202,14 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     Plugins:
-      Value: []
+      Value:
+      - phonon_fmod
       HasValue: 1
     StaticPlugins:
-      Value: []
+      Value:
+      - FMOD_SteamAudio_Spatialize_GetDSPDescription
+      - FMOD_SteamAudio_MixerReturn_GetDSPDescription
+      - FMOD_SteamAudio_Reverb_GetDSPDescription
       HasValue: 1
     CallbackHandler:
       Value: {fileID: 0}
@@ -562,6 +566,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Footsteps
+  - HitFeedback
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

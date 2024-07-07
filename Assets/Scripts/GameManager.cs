@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] internal bool paused;
     [SerializeField] internal GameObject pauseMenu;
+
+    [SerializeField] internal LayerMask attackLayer;
+
     private void Awake()
     {
         if(!Instance)

@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2412356514409852591
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SkyboxShaderTest
+  m_Shader: {fileID: -6465566751694194690, guid: 28f670cc13783074cae230e95312533a,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CloudsNoiseTexture:
+        m_Texture: {fileID: 2800000, guid: 546582b089ea40e448e68c421bd86437, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SkyboxTexture:
+        m_Texture: {fileID: 2800000, guid: c88810797bd746d42bb877ef8877bf95, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Blend: 0.57
+    - _CloudEdge: 0.61
+    - _CloudHeight: 0.02
+    - _CloudPosterizeSteps: 3
+    - _CloudsPower: 0.48
+    - _DaytimeLerp: 3.6
+    - _FogHeight: 10
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _SkyHeight: 0
+    - _StarAngleOffset: 30
+    - _StarDensity: 193.7
+    - _StarHardness: 98.9
+    - _SunBlur: 0
+    - _SunBrightness: 1.19
+    - _SunMaskSize: 0.26
+    - _SunSize: 0.07
+    - _WindSpeed: 0.01
+    m_Colors:
+    - _CloudRemapIn: {r: -0.01, g: 1, b: 0, a: 0}
+    - _CloudRemapOut: {r: 0.32, g: 1, b: 0, a: 0}
+    - _CloudTilingA: {r: 8, g: 4, b: 0, a: 0}
+    - _CloudTilingB: {r: 6, g: 2, b: 0, a: 0}
+    - _CloudsColour: {r: 4, g: 0.37298635, b: 0, a: 0}
+    - _CloudsMaxColour: {r: 1, g: 1, b: 1, a: 0}
+    - _CloudsMinColour: {r: 0, g: 0, b: 0, a: 0}
+    - _GroundColour: {r: 0.4528302, g: 0.30428055, b: 0.20291919, a: 1}
+    - _HorizonColour: {r: 0.26548594, g: 0.31948864, b: 0.3584906, a: 0}
+    - _Offset: {r: 0, g: -0.08, b: 0, a: 0}
+    - _SkyColour: {r: 0.12433251, g: 0.16215737, b: 0.20754719, a: 0}
+    - _StarColour: {r: 2, g: 2, b: 2, a: 0}
+    - _SunColour: {r: 5.0953045, g: 5.0953045, b: 5.0953045, a: 0}
+    - _SunDirection: {r: 0, g: 0, b: 0, a: 0}
+    - _SunMaskOffset: {r: 0.09, g: -0.05, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

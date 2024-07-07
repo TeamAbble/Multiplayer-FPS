@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ground
+  m_Shader: {fileID: -6465566751694194690, guid: 49016f8d924e8414ab45b0848eb7b05f,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _EMISSION
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EMISSION: 1
+    - _EdgeFadeMultiplier: 0.54
+    - _EdgeFadePower: 1
+    - _GridSoftness: 0
+    - _GridThickness: 0.005
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Smoothness: 0.13
+    - _SphereMaskHardness: 1.1
+    - _SphereMaskRadius: 1
+    - _subtractionMultiplier: -0.5
+    m_Colors:
+    - _BackgroundColour: {r: 1, g: 1, b: 1, a: 0}
+    - _CheckerColour1A: {r: 0, g: 0, b: 0, a: 0}
+    - _CheckerColour1B: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 1}
+    - _CheckerColour2A: {r: 1, g: 1, b: 1, a: 0}
+    - _CheckerColour2B: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0}
+    - _CheckerSize: {r: 20, g: 20, b: 0, a: 0}
+    - _CheckerboardColour1: {r: 1, g: 1, b: 1, a: 0}
+    - _CheckerboardColour2: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0}
+    - _CheckerboardFrequency: {r: 10, g: 10, b: 0, a: 0}
+    - _GridColour: {r: 3.9999995, g: 0.3034147, b: 0, a: 0}
+    - _GridSize: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _SmallCheckerSize: {r: 100, g: 100, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &7272571659278057771
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
