@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 1103583532530300890}
   - component: {fileID: 6641521617428096015}
   - component: {fileID: 4180694759959525490}
+  - component: {fileID: 2159489790869438085}
   m_Layer: 7
   m_Name: PhysicalPlayer
   m_TagString: Untagged
@@ -683,6 +684,37 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &2159489790869438085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5411391530691770863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1200312288
+      Data2: 1301893448
+      Data3: 313523630
+      Data4: -407633232
+    Path: event:/Footstep
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6260741637626120188
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +899,7 @@ MonoBehaviour:
   - {fileID: 7367189849072538992}
   - {fileID: 2383514269434830432}
   disableOnLocal: []
+  TeamNumber: 0
   moveInput: {x: 0, y: 0}
   lookInput: {x: 0, y: 0}
   currentCamera: {fileID: 0}
