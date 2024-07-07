@@ -16,8 +16,8 @@ public class PlayerWeaponManager : WeaponManager
             print("pm null or not owner");
             return;
         }
-        CurrentWeapon.fireInput = primaryInput.Value && GameModeController.instance.gameInProgress.Value && !GameManager.Instance.paused;
-        CurrentWeapon.secondaryInput = secondaryInput.Value && GameModeController.instance.gameInProgress.Value && !GameManager.Instance.paused;
+        CurrentWeapon.fireInput = primaryInput && GameModeController.instance.gameInProgress.Value && !GameManager.Instance.paused;
+        CurrentWeapon.secondaryInput = secondaryInput && GameModeController.instance.gameInProgress.Value && !GameManager.Instance.paused;
         
 
     }

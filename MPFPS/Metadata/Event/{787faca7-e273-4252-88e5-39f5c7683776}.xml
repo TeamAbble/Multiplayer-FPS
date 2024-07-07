@@ -103,7 +103,6 @@
 	<object class="MixerBusEffectChain" id="{3b5ad714-9c46-4e69-8a82-e316bfec70f5}">
 		<relationship name="effects">
 			<destination>{749bb99f-f9c6-4c04-9066-4b573355a4a0}</destination>
-			<destination>{2d276fa2-e604-4bef-9636-de15002f7a31}</destination>
 			<destination>{b2245f07-70e1-452c-b645-65ec0d932942}</destination>
 		</relationship>
 	</object>
@@ -137,11 +136,6 @@
 	</object>
 	<object class="MixerBusFader" id="{0a15f9dc-5cfc-4f52-a7a7-14937cd116e5}" />
 	<object class="MixerBusFader" id="{749bb99f-f9c6-4c04-9066-4b573355a4a0}" />
-	<object class="PluginEffect" id="{2d276fa2-e604-4bef-9636-de15002f7a31}">
-		<relationship name="plugin">
-			<destination>{d8e30587-3784-41fe-9c55-ae7b94dff6d6}</destination>
-		</relationship>
-	</object>
 	<object class="PluginEffect" id="{b2245f07-70e1-452c-b645-65ec0d932942}">
 		<relationship name="plugin">
 			<destination>{84fb0a01-b402-47f8-9ff7-d368aa7dac53}</destination>
@@ -213,14 +207,6 @@
 			<destination>{a5046a5d-b017-4fef-89cf-01aba1934a44}</destination>
 		</relationship>
 	</object>
-	<object class="Plugin" id="{d8e30587-3784-41fe-9c55-ae7b94dff6d6}">
-		<property name="identifier">
-			<value>Steam Audio Reverb</value>
-		</property>
-		<relationship name="pluginParameters">
-			<destination>{12ad3aeb-2020-465f-b9f0-25f1b473a3af}</destination>
-		</relationship>
-	</object>
 	<object class="Plugin" id="{84fb0a01-b402-47f8-9ff7-d368aa7dac53}">
 		<property name="identifier">
 			<value>Steam Audio Spatializer</value>
@@ -262,14 +248,6 @@
 			<destination>{82f52879-1ad7-42e6-892d-83056fd7365f}</destination>
 		</relationship>
 	</object>
-	<object class="BoolPluginParameter" id="{12ad3aeb-2020-465f-b9f0-25f1b473a3af}">
-		<property name="name">
-			<value>Binaural</value>
-		</property>
-		<property name="value">
-			<value>false</value>
-		</property>
-	</object>
 	<object class="DataPluginParameter" id="{92a78e49-9fd6-4f0a-8284-93ab58258dd3}">
 		<property name="name">
 			<value>SourcePos</value>
@@ -293,7 +271,7 @@
 			<value>ApplyDA</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<property name="minimumValue">
 			<value>0</value>
@@ -307,7 +285,7 @@
 			<value>ApplyAA</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<property name="minimumValue">
 			<value>0</value>

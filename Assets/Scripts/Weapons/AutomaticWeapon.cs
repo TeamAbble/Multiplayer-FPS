@@ -194,7 +194,7 @@ public class AutomaticWeapon: BaseWeapon
             {
 
             }
-            CreateTracer(manager.fireOrigin.position, endPoint);
+            CreateTracer(tracerOrigin.position, endPoint);
             if (!gunshotEmitter.EventReference.IsNull)
                 gunshotEmitter.Play();
         }
