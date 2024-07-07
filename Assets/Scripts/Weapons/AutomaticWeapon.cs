@@ -2,7 +2,6 @@ using FMODUnity;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using FishNet.Object;
 public class AutomaticWeapon: BaseWeapon
 {
@@ -51,6 +50,7 @@ public class AutomaticWeapon: BaseWeapon
     [SerializeField] protected int currentBurstFireRounds;
     [SerializeField] protected float burstInterval;
     [SerializeField] protected bool burstFiring;
+    [SerializeField] protected Transform tracerOrigin;
     public float Damage(RaycastHit hit)
     {
         float dmg = 0;
@@ -61,7 +61,7 @@ public class AutomaticWeapon: BaseWeapon
     }
     void CreateTracer(Vector3 start, Vector3 end)
     {
-        GameObject t = Instantiate(bulletTracer, manager.fireOrigin.position, Quaternion.identity);
+        GameObject t = Instantiate(bulletTracer, tracerOrigin.position, Quaternion.identity);
         tracers.Add(new()
         {
             start = start,

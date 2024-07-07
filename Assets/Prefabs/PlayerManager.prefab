@@ -395,6 +395,7 @@ MonoBehaviour:
   currentBurstFireRounds: 0
   burstInterval: 0.075
   burstFiring: 0
+  tracerOrigin: {fileID: 3461807489677071985}
 --- !u!114 &7399604878445461208
 MonoBehaviour:
   m_ObjectHideFlags: 0

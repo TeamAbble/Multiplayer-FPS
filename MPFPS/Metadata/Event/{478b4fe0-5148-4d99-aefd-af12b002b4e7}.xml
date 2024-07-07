@@ -237,7 +237,7 @@
 			<value>Binaural</value>
 		</property>
 		<property name="value">
-			<value>true</value>
+			<value>false</value>
 		</property>
 	</object>
 	<object class="DataPluginParameter" id="{38a37308-ac04-42d9-bfef-a0d01044988e}">
