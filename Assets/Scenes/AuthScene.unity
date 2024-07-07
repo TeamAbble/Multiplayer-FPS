@@ -1651,6 +1651,9 @@ MonoBehaviour:
   joinCodePanel: {fileID: 412221378}
   paused: 0
   pauseMenu: {fileID: 1720701531}
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 129
 --- !u!4 &1047614017
 Transform:
   m_ObjectHideFlags: 0
